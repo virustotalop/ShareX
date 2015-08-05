@@ -628,6 +628,12 @@ If you would like to vote, click here to open our Steam Greenlight page.</value>
   <data name="tsmiIndexFolder.Text" xml:space="preserve">
     <value>Index folder...</value>
   </data>
+  <data name="tsmiVideoThumbnailer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="tsmiVideoThumbnailer.Text" xml:space="preserve">
+    <value>Video thumbnailer...</value>
+  </data>
   <data name="tsmiFTPClient.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 22</value>
   </data>
@@ -1405,6 +1411,12 @@ If you would like to vote, click here to open our Steam Greenlight page.</value>
   <data name="tsmiTrayIndexFolder.Text" xml:space="preserve">
     <value>Index folder...</value>
   </data>
+  <data name="tsmiTrayVideoThumbnailer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="tsmiTrayVideoThumbnailer.Text" xml:space="preserve">
+    <value>Video thumbnailer...</value>
+  </data>
   <data name="tsmiTrayFTPClient.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 22</value>
   </data>
@@ -1847,6 +1859,12 @@ If you would like to vote, click here to open our Steam Greenlight page.</value>
     <value>tsmiIndexFolder</value>
   </data>
   <data name="&gt;&gt;tsmiIndexFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsmiVideoThumbnailer.Name" xml:space="preserve">
+    <value>tsmiVideoThumbnailer</value>
+  </data>
+  <data name="&gt;&gt;tsmiVideoThumbnailer.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsmiFTPClient.Name" xml:space="preserve">
@@ -2707,10 +2725,16 @@ If you would like to vote, click here to open our Steam Greenlight page.</value>
   <data name="&gt;&gt;tsmiTrayExit.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;tsmiTrayVideoThumbnailer.Name" xml:space="preserve">
+    <value>tsmiTrayVideoThumbnailer</value>
+  </data>
+  <data name="&gt;&gt;tsmiTrayVideoThumbnailer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>ShareX.HotkeyForm, ShareX, Version=10.1.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>ShareX.HotkeyForm, ShareX, Version=10.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

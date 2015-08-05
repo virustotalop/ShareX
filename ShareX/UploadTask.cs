@@ -596,6 +596,7 @@ namespace ShareX
                 if (!string.IsNullOrEmpty(filePath))
                 {
                     Info.FilePath = filePath;
+                    Helpers.CreateDirectoryIfNotExist(Info.FilePath);
                     File.WriteAllText(Info.FilePath, tempText, Encoding.UTF8);
                     DebugHelper.WriteLine("SaveTextToFile: " + Info.FilePath);
                 }
@@ -751,6 +752,9 @@ namespace ShareX
                 case ImageDestination.Vgyme:
                     imageUploader = new VgymeUploader();
                     break;
+                case ImageDestination.SomeImage:
+                    imageUploader = new SomeImage(APIKeys.SomeImageKey);
+                    break;
                 case ImageDestination.CustomImageUploader:
                     CustomUploaderItem customUploader = GetCustomUploader(Program.UploadersConfig.CustomImageUploaderSelected);
                     if (customUploader != null)
@@ -810,6 +814,13 @@ namespace ShareX
                     {
                         CustomDomain = Program.UploadersConfig.HastebinCustomDomain,
                         SyntaxHighlighting = Program.UploadersConfig.HastebinSyntaxHighlighting
+                    };
+                    break;
+                case TextDestination.OneTimeSecret:
+                    textUploader = new OneTimeSecret()
+                    {
+                        API_KEY = Program.UploadersConfig.OneTimeSecretAPIKey,
+                        API_USERNAME = Program.UploadersConfig.OneTimeSecretAPIUsername
                     };
                     break;
                 case TextDestination.CustomTextUploader:
@@ -1113,6 +1124,13 @@ namespace ShareX
                     break;
                 case UrlShortenerType.TwoGP:
                     urlShortener = new TwoGPURLShortener();
+                    break;
+                case UrlShortenerType.Polr:
+                    urlShortener = new PolrURLShortener
+                    {
+                        API_HOST = Program.UploadersConfig.PolrAPIHostname,
+                        API_KEY = Program.UploadersConfig.PolrAPIKey
+                    };
                     break;
                 case UrlShortenerType.CustomURLShortener:
                     CustomUploaderItem customUploader = GetCustomUploader(Program.UploadersConfig.CustomURLShortenerSelected);

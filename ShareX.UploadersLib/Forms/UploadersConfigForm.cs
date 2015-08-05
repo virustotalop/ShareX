@@ -115,6 +115,8 @@ namespace ShareX.UploadersLib
             AddIconToTab(tpYourls, Resources.Yourls);
             AddIconToTab(tpLambda, Resources.Lambda);
             AddIconToTab(tpUp1, Resources.Up1);
+            AddIconToTab(tpOneTimeSecret, Resources.OneTimeSecret);
+            AddIconToTab(tpPolr, Resources.Polr);
 
             tcFileUploaders.TabPages.Remove(tpHubic);
 
@@ -1060,6 +1062,20 @@ namespace ShareX.UploadersLib
         }
 
         #endregion Hastebin
+
+        #region OneTimeSecret
+
+        private void txtOneTimeSecretEmail_TextChanged(object sender, EventArgs e)
+        {
+            Config.OneTimeSecretAPIUsername = txtOneTimeSecretEmail.Text;
+        }
+
+        private void txtOneTimeSecretAPIKey_TextChanged(object sender, EventArgs e)
+        {
+            Config.OneTimeSecretAPIKey = txtOneTimeSecretAPIKey.Text;
+        }
+
+        #endregion OneTimeSecret
 
         #endregion Text Uploaders
 
@@ -2174,6 +2190,20 @@ namespace ShareX.UploadersLib
         }
 
         #endregion CoinURL
+
+        #region Polr
+
+        private void txtPolrAPIHostname_TextChanged(object sender, EventArgs e)
+        {
+            Config.PolrAPIHostname = txtPolrAPIHostname.Text;
+        }
+
+        private void txtPolrAPIKey_TextChanged(object sender, EventArgs e)
+        {
+            Config.PolrAPIKey = txtPolrAPIKey.Text;
+        }
+
+        #endregion Polr
 
         #endregion URL Shorteners
 

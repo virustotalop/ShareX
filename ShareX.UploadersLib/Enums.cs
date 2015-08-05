@@ -50,6 +50,8 @@ namespace ShareX.UploadersLib
         HizliResim,
         [Description("vgy.me")]
         Vgyme,
+        [Description("SomeImage")]
+        SomeImage,
         CustomImageUploader, // Localized
         FileUploader // Localized
     }
@@ -73,6 +75,8 @@ namespace ShareX.UploadersLib
         Upaste,
         [Description("Hastebin")]
         Hastebin,
+        [Description("OneTimeSecret")]
+        OneTimeSecret,
         CustomTextUploader, // Localized
         FileUploader // Localized
     }
@@ -164,6 +168,8 @@ namespace ShareX.UploadersLib
         VURL,
         [Description("2.gp")]
         TwoGP,
+        [Description("Polr")]
+        Polr,
         CustomURLShortener // Localized
     }
 

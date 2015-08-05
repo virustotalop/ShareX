@@ -109,6 +109,11 @@ namespace ShareX.UploadersLib
         public string HastebinCustomDomain = "http://hastebin.com";
         public string HastebinSyntaxHighlighting = "hs";
 
+        // OneTimeSecret
+
+        public string OneTimeSecretAPIKey = string.Empty;
+        public string OneTimeSecretAPIUsername = string.Empty;
+
         #endregion Text uploaders
 
         #region File uploaders
@@ -282,6 +287,10 @@ namespace ShareX.UploadersLib
         // coinurl.com
         public string CoinURLUUID = string.Empty;
 
+        // polr
+        public string PolrAPIHostname = string.Empty;
+        public string PolrAPIKey = string.Empty;
+
         #endregion URL shorteners
 
         #region URL sharing services
@@ -370,6 +379,8 @@ namespace ShareX.UploadersLib
         {
             switch (destination)
             {
+                case TextDestination.OneTimeSecret:
+                    return !string.IsNullOrEmpty(OneTimeSecretAPIUsername) && !string.IsNullOrEmpty(OneTimeSecretAPIKey);
                 case TextDestination.CustomTextUploader:
                     return CustomUploadersList != null && CustomUploadersList.IsValidIndex(CustomTextUploaderSelected);
             }
@@ -439,6 +450,8 @@ namespace ShareX.UploadersLib
                     return !string.IsNullOrEmpty(LnkUAPIKEY);
                 case UrlShortenerType.CoinURL:
                     return !string.IsNullOrEmpty(CoinURLUUID);
+                case UrlShortenerType.Polr:
+                    return !string.IsNullOrEmpty(PolrAPIKey);
                 case UrlShortenerType.CustomURLShortener:
                     return CustomUploadersList != null && CustomUploadersList.IsValidIndex(CustomURLShortenerSelected);
             }

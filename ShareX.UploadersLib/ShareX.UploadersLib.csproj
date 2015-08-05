@@ -191,8 +191,10 @@
     <Compile Include="HelperClasses\OAuth\IOAuthBase.cs" />
     <Compile Include="ImageUploaders\Chevereto.cs" />
     <Compile Include="ImageUploaders\HizliResim.cs" />
+    <Compile Include="ImageUploaders\SomeImage.cs" />
     <Compile Include="ImageUploaders\VgymeUploader.cs" />
     <Compile Include="TextUploaders\Hastebin.cs" />
+    <Compile Include="TextUploaders\OneTimeSecret.cs" />
     <Compile Include="TextUploaders\Upaste.cs" />
     <Compile Include="UploadersConfig.cs" />
     <Compile Include="Forms\UserPassBox.cs">
@@ -285,6 +287,7 @@
     <Compile Include="TextUploaders\Slexy.cs" />
     <Compile Include="Uploader.cs" />
     <Compile Include="URLShortener.cs" />
+    <Compile Include="URLShorteners\PolrURLShortener.cs" />
     <Compile Include="URLShorteners\TwoGPURLShortener.cs" />
     <Compile Include="URLShorteners\AdFlyURLShortener.cs" />
     <Compile Include="URLShorteners\BitlyURLShortener.cs" />
@@ -703,6 +706,8 @@
     <None Include="Favicons\Lambda.ico" />
     <None Include="Favicons\Mega.ico" />
     <None Include="Favicons\Picasa.ico" />
+    <None Include="Favicons\OneTimeSecret.ico" />
+    <None Include="Favicons\Polr.ico" />
     <None Include="packages.config" />
     <None Include="Resources\server-network.png" />
     <None Include="Resources\mail.png" />

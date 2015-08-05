@@ -960,6 +960,11 @@ namespace ShareX
             TaskHelpers.OpenIndexFolder();
         }
 
+        private void tsmiVideoThumbnailer_Click(object sender, EventArgs e)
+        {
+            TaskHelpers.OpenVideoThumbnailer();
+        }
+
         private void tsmiImageEditor_Click(object sender, EventArgs e)
         {
             TaskHelpers.OpenImageEditor();
@@ -1213,6 +1218,10 @@ namespace ShareX
                     UploadManager.ClipboardUploadMainWindow();
                     break;
                 case Keys.Delete:
+                    RemoveSelectedItems();
+                    break;
+                case Keys.Shift | Keys.Delete:
+                    uim.DeleteFiles();
                     RemoveSelectedItems();
                     break;
             }
@@ -1484,7 +1493,7 @@ namespace ShareX
             if (e.Button == MouseButtons.Left)
             {
                 URLHelpers.OpenURL("http://steamcommunity.com/sharedfiles/filedetails/?id=491692781");
-                btnGreenlightOpen.Text = "Thanks for considering voting :)\r\nYou can hide these buttons by pressing hide button on the right side:";
+                btnGreenlightOpen.Text = "Thanks for considering to vote :)\r\nYou can hide these buttons by pressing hide button on the right side:";
             }
         }
 
