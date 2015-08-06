@@ -74,7 +74,7 @@ namespace ShareX.MediaLib
                     timeSliceElapsed = GetTimeSlice(Options.ScreenshotCount) * (i + 1);
                 }
 
-                string filename = string.Format("{0}-{1}.{2}", mediaFileName, timeSliceElapsed, Options.FFmpegThumbnailExtension.GetDescription());
+                string filename = string.Format("{0}-{1}.{2}", mediaFileName, timeSliceElapsed, Options.ImageFormat.GetDescription());
                 string tempScreenshotPath = Path.Combine(GetOutputDirectory(), filename);
 
                 using (Process p = new Process())
@@ -113,22 +113,15 @@ namespace ShareX.MediaLib
                 {
                     using (Image img = CombineScreenshots(tempScreenshots))
                     {
-                        string tempFilepath = Path.Combine(GetOutputDirectory(), Path.GetFileNameWithoutExtension(MediaPath) + "_Thumbnail." + Options.FFmpegThumbnailExtension.GetDescription());
-
-                        switch (Options.FFmpegThumbnailExtension)
-                        {
-                            case EImageFormat.PNG:
-                                img.Save(tempFilepath, ImageFormat.Png);
-                                break;
-                            case EImageFormat.JPEG:
-                                img.Save(tempFilepath, ImageFormat.Jpeg);
-                                break;
-                        }
-
+                        string tempFilepath = Path.Combine(GetOutputDirectory(), Path.GetFileNameWithoutExtension(MediaPath) + Options.FilenameSuffix + "." + Options.ImageFormat.GetDescription());
+                        ImageHelpers.SaveImage(img, tempFilepath);
                         screenshots.Add(new VideoThumbnailInfo(tempFilepath));
                     }
 
-                    tempScreenshots.ForEach(x => File.Delete(x.Filepath));
+                    if (!Options.KeepScreenshots)
+                    {
+                        tempScreenshots.ForEach(x => File.Delete(x.Filepath));
+                    }
                 }
                 else
                 {
@@ -157,12 +150,12 @@ namespace ShareX.MediaLib
             switch (Options.OutputLocation)
             {
                 default:
+                case ThumbnailLocationType.DefaultFolder:
+                    return Options.DefaultOutputDirectory;
                 case ThumbnailLocationType.ParentFolder:
                     return Path.GetDirectoryName(MediaPath);
                 case ThumbnailLocationType.CustomFolder:
-                    return Options.OutputDirectory;
-                case ThumbnailLocationType.DefaultFolder: // TODO
-                    return "";
+                    return Options.CustomOutputDirectory;
             }
         }
 
@@ -194,11 +187,11 @@ namespace ShareX.MediaLib
                 string infoString = "";
                 int infoStringHeight = 0;
 
-                if (Options.AddMovieInfo)
+                if (Options.AddVideoInfo)
                 {
                     infoString = VideoInfo.ToString();
 
-                    using (Font font = new Font("Arial", 14))
+                    using (Font font = new Font("Arial", 12))
                     {
                         infoStringHeight = Helpers.MeasureText(infoString, font).Height;
                     }
@@ -242,7 +235,7 @@ namespace ShareX.MediaLib
 
                     if (!string.IsNullOrEmpty(infoString))
                     {
-                        using (Font font = new Font("Arial", 14))
+                        using (Font font = new Font("Arial", 12))
                         {
                             g.DrawString(infoString, font, Brushes.Black, Options.Padding, Options.Padding);
                         }
@@ -269,11 +262,16 @@ namespace ShareX.MediaLib
 
                             g.DrawImage(images[i], offsetX, offsetY, thumbWidth, thumbHeight);
 
+                            if (Options.DrawBorder)
+                            {
+                                g.DrawRectangleProper(Pens.Black, offsetX, offsetY, thumbWidth, thumbHeight);
+                            }
+
                             if (Options.AddTimestamp)
                             {
                                 int timestampOffset = 10;
 
-                                using (Font font = new Font("Arial", 12))
+                                using (Font font = new Font("Arial", 10, FontStyle.Bold))
                                 {
                                     ImageHelpers.DrawTextWithShadow(g, screenshots[i].Timestamp.ToString(),
                                         new Point(offsetX + timestampOffset, offsetY + timestampOffset), font, Color.White, Color.Black);
