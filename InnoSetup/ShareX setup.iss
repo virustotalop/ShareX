@@ -5,11 +5,11 @@
 #dim Version[4]
 #expr ParseVersion(AppPath, Version[0], Version[1], Version[2], Version[3])
 #define AppVersion Str(Version[0]) + "." + Str(Version[1]) + "." + Str(Version[2])
-#define AppPublisher "ShareX Developers"
+#define AppPublisher "ShareX Team"
 #define AppId "82E6AC09-0FEF-4390-AD9F-0DD3F5561EFC"
 
 [Setup]
-AppCopyright=Copyright (C) 2007-2015 {#AppPublisher}
+AppCopyright=Copyright (c) 2007-2015 {#AppPublisher}
 AppId={#AppId}
 AppMutex={#AppId}
 AppName={#AppName}
@@ -21,7 +21,6 @@ AppVerName={#AppName} {#AppVersion}
 AppVersion={#AppVersion}
 ArchitecturesAllowed=x86 x64 ia64
 ArchitecturesInstallIn64BitMode=x64 ia64
-CreateUninstallRegKey=not IsTaskSelected('PortableMode')
 DefaultDirName={pf}\{#AppName}
 DefaultGroupName={#AppName}
 DirExistsWarning=no
@@ -32,7 +31,6 @@ OutputBaseFilename={#AppName}-{#AppVersion}-setup
 OutputDir=Output\
 PrivilegesRequired=none
 ShowLanguageDialog=no
-Uninstallable=not IsTaskSelected('PortableMode')
 UninstallDisplayIcon={app}\{#AppFilename}
 UninstallDisplayName={#AppName}
 VersionInfoCompany={#AppPublisher}
@@ -48,15 +46,12 @@ Name: "en"; MessagesFile: "compiler:Default.isl"
 Name: "de"; MessagesFile: "compiler:Languages\German.isl"
 
 [Tasks]
-Name: "PortableMode"; Description: "Portable mode"; Flags: unchecked
 Name: "CreateDesktopIcon"; Description: "Create a desktop shortcut"; GroupDescription: "Additional shortcuts:"
 Name: "CreateSendToIcon"; Description: "Create a send to shortcut"; GroupDescription: "Additional shortcuts:"
 Name: "CreateQuickLaunchIcon"; Description: "Create a quick launch shortcut"; GroupDescription: "Additional shortcuts:"; OnlyBelowVersion: 0,6.1
 Name: "CreateStartupIcon"; Description: "Launch {#AppName} automatically at Windows startup"; GroupDescription: "Other tasks:"
 
 [Files]
-Source: "PersonalPath.cfg"; DestDir: {app}; Tasks: PortableMode
-
 Source: "{#AppParentDirectory}\ShareX.exe"; DestDir: {app}; Flags: ignoreversion
 Source: "{#AppParentDirectory}\ShareX.exe.config"; DestDir: {app}; Flags: ignoreversion
 Source: "{#AppParentDirectory}\*.dll"; DestDir: {app}; Flags: ignoreversion
@@ -74,12 +69,12 @@ Source: "{#AppParentDirectory}\es\*.resources.dll"; DestDir: {app}\Languages\es;
 Source: "{#AppParentDirectory}\nl-NL\*.resources.dll"; DestDir: {app}\Languages\nl-NL; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\{#AppName}"; Filename: "{app}\{#AppFilename}"; WorkingDir: "{app}"; Tasks: not PortableMode
-Name: "{group}\{cm:UninstallProgram,{#AppName}}"; Filename: "{uninstallexe}"; WorkingDir: "{app}"; Tasks: not PortableMode
-Name: "{userdesktop}\{#AppName}"; Filename: "{app}\{#AppFilename}"; WorkingDir: "{app}"; Tasks: CreateDesktopIcon and not PortableMode; Check: not DesktopIconExists
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#AppName}"; Filename: "{app}\{#AppFilename}"; WorkingDir: "{app}"; Tasks: CreateQuickLaunchIcon and not PortableMode
-Name: "{sendto}\{#AppName}"; Filename: "{app}\{#AppFilename}"; WorkingDir: "{app}"; Tasks: CreateSendToIcon and not PortableMode
-Name: "{userstartup}\{#AppName}"; Filename: "{app}\{#AppFilename}"; WorkingDir: "{app}"; Parameters: "-silent"; Tasks: CreateStartupIcon and not PortableMode
+Name: "{group}\{#AppName}"; Filename: "{app}\{#AppFilename}"; WorkingDir: "{app}"
+Name: "{group}\{cm:UninstallProgram,{#AppName}}"; Filename: "{uninstallexe}"; WorkingDir: "{app}"
+Name: "{userdesktop}\{#AppName}"; Filename: "{app}\{#AppFilename}"; WorkingDir: "{app}"; Tasks: CreateDesktopIcon; Check: not DesktopIconExists
+Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#AppName}"; Filename: "{app}\{#AppFilename}"; WorkingDir: "{app}"; Tasks: CreateQuickLaunchIcon
+Name: "{sendto}\{#AppName}"; Filename: "{app}\{#AppFilename}"; WorkingDir: "{app}"; Tasks: CreateSendToIcon
+Name: "{userstartup}\{#AppName}"; Filename: "{app}\{#AppFilename}"; WorkingDir: "{app}"; Parameters: "-silent"; Tasks: CreateStartupIcon
 
 [Run]
 Filename: "{app}\{#AppFilename}"; Description: "{cm:LaunchProgram,{#AppName}}"; Flags: nowait postinstall
@@ -91,10 +86,9 @@ Filename: regsvr32; WorkingDir: {app}; Parameters: "/s /u audio_sniffer.dll"; Ch
 Filename: regsvr32; WorkingDir: {app}; Parameters: "/s /u audio_sniffer-x64.dll"; Check: IsWin64
 
 [Registry]
-;Root: "HKCU"; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueName: "{#AppName}"; Flags: uninsdeletevalue; Tasks: not PortableMode
-Root: "HKCU"; Subkey: "Software\Classes\*\shell\{#AppName}"; Flags: dontcreatekey uninsdeletekey; Tasks: not PortableMode
-Root: "HKCU"; Subkey: "Software\Classes\Directory\shell\{#AppName}"; Flags: dontcreatekey uninsdeletekey; Tasks: not PortableMode
-Root: "HKCU"; Subkey: "Software\Classes\Folder\shell\{#AppName}"; Flags: dontcreatekey uninsdeletekey; Tasks: not PortableMode
+Root: "HKCU"; Subkey: "Software\Classes\*\shell\{#AppName}"; Flags: dontcreatekey uninsdeletekey
+Root: "HKCU"; Subkey: "Software\Classes\Directory\shell\{#AppName}"; Flags: dontcreatekey uninsdeletekey
+Root: "HKCU"; Subkey: "Software\Classes\Folder\shell\{#AppName}"; Flags: dontcreatekey uninsdeletekey
 
 [Code]
 #include "Scripts\products.iss"

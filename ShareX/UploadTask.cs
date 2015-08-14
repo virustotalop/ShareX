@@ -2,7 +2,7 @@
 
 /*
     ShareX - A program that allows you to take screenshots and share any file type
-    Copyright © 2007-2015 ShareX Developers
+    Copyright (c) 2007-2015 ShareX Team
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public License
@@ -706,6 +706,7 @@ namespace ShareX
                         UploadMethod = Program.UploadersConfig.ImgurAccountType,
                         DirectLink = Program.UploadersConfig.ImgurDirectLink,
                         ThumbnailType = Program.UploadersConfig.ImgurThumbnailType,
+                        UseGIFV = Program.UploadersConfig.ImgurUseGIFV,
                         UploadAlbumID = albumID
                     };
                     break;
@@ -741,12 +742,6 @@ namespace ShareX
                     imageUploader = new Chevereto(Program.UploadersConfig.CheveretoWebsite, Program.UploadersConfig.CheveretoAPIKey)
                     {
                         DirectURL = Program.UploadersConfig.CheveretoDirectURL
-                    };
-                    break;
-                case ImageDestination.HizliResim:
-                    imageUploader = new HizliResim()
-                    {
-                        DirectURL = true
                     };
                     break;
                 case ImageDestination.Vgyme:
